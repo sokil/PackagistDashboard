@@ -52,14 +52,14 @@ module.exports = {
                 }
             },
             {
-                test: /\.(less|css)$/,
+                test: /\.(sass|css)$/,
                 use: extractLess.extract({
                     use: [
                         {
                             loader: "css-loader"
                         },
                         {
-                            loader: "less-loader"
+                            loader: "sass-loader"
                         }
                     ],
                     // use style-loader in development
