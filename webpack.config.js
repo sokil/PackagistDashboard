@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 // set mode
 const mode = process.env.NODE_ENV
@@ -44,6 +44,14 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
+                test: /.jsx?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', 'react']
+                }
+            },
+            {
                 test: /\.(less|css)$/,
                 use: extractLess.extract({
                     use: [
@@ -61,10 +69,14 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Packagist Dashboard',
-            filename: 'index.html'
-        }),
+        new CopyWebpackPlugin(
+            [
+                {from: './src/html/index.html', to: './index.html'}
+            ],
+            {
+                debug: mode === 'production' ? 'warning' : 'info'
+            }
+        ),
         extractLess,
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(mode),
