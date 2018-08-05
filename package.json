@@ -1,0 +1,15 @@
+{
+  "name": "PackagistDashboard",
+  "version": "1.0.0",
+  "description": "Took to get info about vendor packages",
+  "main": "index.js",
+  "repository": "git@github.com:sokil/PackagistDashboard.git",
+  "author": "Dmytro Sokil <dmytro.sokil@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
+  }
+}
