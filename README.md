@@ -1,5 +1,5 @@
 # PackagistDashboard
 
-Tool to get info about packaginst libraries ber user
+Tool to get info about packagist libraries
 
 Demo: https://sokil.github.io/PackagistDashboard/dist/
