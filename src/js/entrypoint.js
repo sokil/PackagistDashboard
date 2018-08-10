@@ -4,5 +4,20 @@ import Layout from '../jsx/Layout.jsx';
 import VendorPackagesList from '../jsx/VendorPackagesList.jsx';
 
 ReactDOM.render(<Layout/>, document.getElementById('app'));
-ReactDOM.render(<VendorPackagesList/>, document.getElementById('vendorPackagesContainer'));
+
+const packages = [
+    {
+        name: 'sokil/php-mongo',
+        downloadStat: {
+            'daily': 10,
+            'monthly': 20,
+            'total': 30,
+        }
+    }
+];
+
+ReactDOM.render(
+    <VendorPackagesList packages={packages}/>,
+    document.getElementById('vendorPackagesContainer')
+);
 

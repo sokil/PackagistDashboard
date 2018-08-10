@@ -2,6 +2,15 @@ import React from 'react';
 
 class VendorPackagesList extends React.Component {
     render() {
+        var packageElements = this.props.packages.map(vendorPackage => {
+            return <tr key={vendorPackage.name}>
+                <td>{vendorPackage.name}</td>
+                <td>{vendorPackage.downloadStat.daily}</td>
+                <td>{vendorPackage.downloadStat.monthly}</td>
+                <td>{vendorPackage.downloadStat.total}</td>
+            </tr>;
+        });
+
         return <table className="table table-hover table-striped">
             <thead>
                 <tr>
@@ -12,12 +21,7 @@ class VendorPackagesList extends React.Component {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>sokil/php-mongo</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
+                {packageElements}
             </tbody>
         </table>
     }
