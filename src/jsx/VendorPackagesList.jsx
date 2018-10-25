@@ -2,12 +2,12 @@ import React from 'react';
 
 class VendorPackagesList extends React.Component {
     render() {
-        var packageElements = this.props.packages.map(vendorPackage => {
-            return <tr key={vendorPackage.name}>
-                <td>{vendorPackage.name}</td>
-                <td>{vendorPackage.downloadStat.daily}</td>
-                <td>{vendorPackage.downloadStat.monthly}</td>
-                <td>{vendorPackage.downloadStat.total}</td>
+        var packageElements = this.props.vendorPackageNames.map(vendorPackageName => {
+            return <tr key={vendorPackageName}>
+                <td>{vendorPackageName}</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
             </tr>;
         });
 
