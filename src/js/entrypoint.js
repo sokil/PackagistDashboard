@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import Layout from '../jsx/Layout.jsx';
-import VendorPackagesList from '../jsx/VendorPackagesList.jsx';
+import Layout from '../components/Layout.jsx';
+import { Provider } from 'react-redux'
 import { createStore } from 'redux';
-import { connect } from 'react-redux'
-
-// render layout
-ReactDOM.render(<Layout/>, document.getElementById('app'));
 
 // initial store
 const initialState = {
+    currentVendor: null,
     vendorPackageNames: {},
     vendorPackageDownloadStats: {},
 };
@@ -21,10 +18,15 @@ let store = createStore(function(state, action) {
     }
 
     switch (action.type) {
+        case 'changeVendor':
+            return {
+                ...state,
+                currentVendor: action.vendor
+            };
         case 'addVendorPackages':
             return {
                 ...state,
-                vendorPackages: {
+                vendorPackageNames: {
                     ...state.vendorPackageNames,
                     [action.vendor]: action.packageNames
                 }
@@ -46,6 +48,14 @@ let store = createStore(function(state, action) {
     return state;
 });
 
+// render layout
+ReactDOM.render(
+    <Provider store={store}>
+        <Layout/>
+    </Provider>,
+    document.getElementById('app')
+);
+
 // fetch vendor packages
 let vendor = 'sokil';
 
@@ -59,18 +69,13 @@ fetch("https://packagist.org/packages/list.json?vendor=" + vendor)
         });
     });
 
-// binding
-const mapStateToProps = state => {
-    return {
-        vendorPackageNames: state.vendorPackageNames[vendor]
-    }
-};
+store.dispatch({
+    type: 'changeVendor',
+    vendor: vendor,
+});
 
-const VendorPackagesListContainer = connect(mapStateToProps)(VendorPackagesList);
 
-ReactDOM.render(
-    <VendorPackagesListContainer/>,
-    document.getElementById('vendorPackagesContainer')
-);
+
+
 
 
