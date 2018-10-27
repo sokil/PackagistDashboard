@@ -5,9 +5,9 @@ class VendorPackagesList extends React.Component {
         var packageElements = this.props.vendorPackageNames.map(vendorPackageName => {
             return <tr key={vendorPackageName}>
                 <td>{vendorPackageName}</td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
+                <td>{this.props.vendorPackageDownloadStats[vendorPackageName] ? this.props.vendorPackageDownloadStats[vendorPackageName].daily : 0}</td>
+                <td>{this.props.vendorPackageDownloadStats[vendorPackageName] ? this.props.vendorPackageDownloadStats[vendorPackageName].monthly : 0}</td>
+                <td>{this.props.vendorPackageDownloadStats[vendorPackageName] ? this.props.vendorPackageDownloadStats[vendorPackageName].total : 0}</td>
             </tr>;
         });
 

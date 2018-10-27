@@ -37,9 +37,9 @@ const reducer = function(state, action) {
                 vendorPackageDownloadStats: {
                     ...state.vendorPackageDownloadStats,
                     [action.vendorPackageName]: {
-                        'daily': 10,
-                        'monthly': 20,
-                        'total': 30,
+                        'daily': action.downloads.daily,
+                        'monthly': action.downloads.monthly,
+                        'total': action.downloads.total,
                     }
                 }
             };

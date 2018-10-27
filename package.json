@@ -36,6 +36,7 @@
     "build-prod": "NODE_ENV=production ./node_modules/.bin/webpack -p --progress"
   },
   "dependencies": {
+    "lodash-es": "^4.17.11",
     "redux-thunk": "^2.3.0"
   }
 }
