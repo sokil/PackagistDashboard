@@ -4,6 +4,7 @@ import Layout from '../components/Layout.jsx';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 // initial store
 const initialState = {
@@ -51,8 +52,10 @@ const reducer = function(state, action) {
 // store
 let store = createStore(
     reducer,
-    applyMiddleware(
-        thunkMiddleware
+    composeWithDevTools(
+        applyMiddleware(
+            thunkMiddleware
+        ),
     )
 );
 
