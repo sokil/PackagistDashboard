@@ -1,5 +1,13 @@
 export function fetchVendorPackageNames(vendor) {
-    return function(dispatch) {
+    return function(dispatch, getState) {
+
+        // check if stat already loaded
+        const state = getState();
+        if (state.vendorPackageNames[vendor]) {
+            return Promise.resolve();
+        }
+
+        // load stat
         return fetch("https://packagist.org/packages/list.json?vendor=" + vendor)
             .then(response => response.json())
             .then(response => {
