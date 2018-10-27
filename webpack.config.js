@@ -20,7 +20,7 @@ const extractLess = new ExtractTextPlugin({
 // webpack config
 module.exports = {
     mode: mode,
-    entry: ['babel-polyfill', './src/js/entrypoint.js'],
+    entry: ['babel-polyfill', './src/app/entrypoint.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: './js/bundle.js'

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import Layout from '../components/Layout.jsx';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk'
 
 // initial store
 const initialState = {
@@ -11,8 +12,7 @@ const initialState = {
     vendorPackageDownloadStats: {},
 };
 
-// store
-let store = createStore(function(state, action) {
+const reducer = function(state, action) {
     if (typeof state === 'undefined') {
         return initialState;
     }
@@ -46,7 +46,15 @@ let store = createStore(function(state, action) {
     }
 
     return state;
-});
+};
+
+// store
+let store = createStore(
+    reducer,
+    applyMiddleware(
+        thunkMiddleware
+    )
+);
 
 // render layout
 ReactDOM.render(
@@ -55,24 +63,6 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
-
-// fetch vendor packages
-let vendor = 'sokil';
-
-fetch("https://packagist.org/packages/list.json?vendor=" + vendor)
-    .then(response => response.json())
-    .then(response => {
-        store.dispatch({
-            type: 'addVendorPackages',
-            vendor: vendor,
-            packageNames: response.packageNames
-        });
-    });
-
-store.dispatch({
-    type: 'changeVendor',
-    vendor: vendor,
-});
 
 
 
