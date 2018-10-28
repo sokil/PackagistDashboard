@@ -30,7 +30,8 @@ export function fetchVendorPackageNames(vendor) {
                                     daily: response.package.downloads.daily,
                                     monthly: response.package.downloads.monthly,
                                     total: response.package.downloads.total,
-                                }
+                                },
+                                stars: response.package.github_stars
                             })
                         });
                 });

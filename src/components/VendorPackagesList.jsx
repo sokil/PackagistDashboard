@@ -2,12 +2,13 @@ import React from 'react';
 
 class VendorPackagesList extends React.Component {
     render() {
-        var packageElements = this.props.vendorPackageNames.map(vendorPackageName => {
+        const packageElements = this.props.vendorPackageNames.map(vendorPackageName => {
             return <tr key={vendorPackageName}>
-                <td>{vendorPackageName}</td>
-                <td>{this.props.vendorPackageDownloadStats[vendorPackageName] ? this.props.vendorPackageDownloadStats[vendorPackageName].daily : 0}</td>
-                <td>{this.props.vendorPackageDownloadStats[vendorPackageName] ? this.props.vendorPackageDownloadStats[vendorPackageName].monthly : 0}</td>
-                <td>{this.props.vendorPackageDownloadStats[vendorPackageName] ? this.props.vendorPackageDownloadStats[vendorPackageName].total : 0}</td>
+                <td><a href={"https://repo.packagist.org/packages/" + vendorPackageName}>{vendorPackageName}</a></td>
+                <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].downloads.daily : 0}</td>
+                <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].downloads.monthly : 0}</td>
+                <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].downloads.total : 0}</td>
+                <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].stars : 0}</td>
             </tr>;
         });
 
@@ -18,6 +19,7 @@ class VendorPackagesList extends React.Component {
                     <th>Daily Downloads</th>
                     <th>Monthly Downloads</th>
                     <th>Total Downloads</th>
+                    <th>Stars</th>
                 </tr>
             </thead>
             <tbody>

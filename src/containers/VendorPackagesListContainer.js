@@ -7,16 +7,21 @@ const mapStateToProps = state => {
     if (!state.currentVendor && !(state.currentVendor in state.vendorPackageNames)) {
         return {
             vendorPackageNames: [],
-            vendorPackageDownloadStats: {}
+            vendorPackageInfo: {}
         };
     }
 
+    const vendorPackageNames = state.vendorPackageNames[state.currentVendor];
+    const vendorPackageInfo = pick(
+        state.vendorPackageInfo,
+        state.vendorPackageNames[state.currentVendor]
+    );
+
+    // @todo: order "vendorPackageNames" by some direction using data from "vendorPackageInfo"
+
     return {
-        vendorPackageNames: state.vendorPackageNames[state.currentVendor],
-        vendorPackageDownloadStats: pick(
-            state.vendorPackageDownloadStats,
-            state.vendorPackageNames[state.currentVendor]
-        )
+        vendorPackageNames,
+        vendorPackageInfo
     }
 };
 

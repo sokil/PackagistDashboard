@@ -10,7 +10,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const initialState = {
     currentVendor: null,
     vendorPackageNames: {},
-    vendorPackageDownloadStats: {},
+    vendorPackageInfo: {},
 };
 
 const reducer = function(state, action) {
@@ -35,12 +35,15 @@ const reducer = function(state, action) {
         case 'addVendorPackageDownloadStat':
             return {
                 ...state,
-                vendorPackageDownloadStats: {
-                    ...state.vendorPackageDownloadStats,
+                vendorPackageInfo: {
+                    ...state.vendorPackageInfo,
                     [action.vendorPackageName]: {
-                        'daily': action.downloads.daily,
-                        'monthly': action.downloads.monthly,
-                        'total': action.downloads.total,
+                        'downloads': {
+                            'daily': action.downloads.daily,
+                            'monthly': action.downloads.monthly,
+                            'total': action.downloads.total,
+                        },
+                        'stars': action.stars
                     }
                 }
             };
