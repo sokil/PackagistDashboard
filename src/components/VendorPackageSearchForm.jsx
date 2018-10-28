@@ -12,6 +12,7 @@ class VendorPackageSearchForm extends React.Component {
         e.preventDefault();
 
         if (this.state.vendor) {
+            location.hash = '#' + this.state.vendor;
             this.props.showVendorPackages(this.state.vendor);
         }
     }

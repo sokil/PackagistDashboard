@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { fetchVendorPackageNames } from './packagistApi';
 
 // initial store
 const initialState = {
@@ -69,6 +70,20 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
+
+// load initial vendor from hash
+if (location.hash) {
+    (function() {
+        const vendor = location.hash.substr(1);
+        store.dispatch(fetchVendorPackageNames(vendor))
+            .then(() => {
+                store.dispatch({
+                    type: 'changeVendor',
+                    vendor: vendor
+                });
+            });
+    })();
+}
 
 
 
