@@ -44,6 +44,9 @@ const reducer = function(state, action) {
                             'monthly': action.downloads.monthly,
                             'total': action.downloads.total,
                         },
+                        'lastRelease': {
+                            'version': action.lastRelease.version
+                        },
                         'stars': action.stars
                     }
                 }

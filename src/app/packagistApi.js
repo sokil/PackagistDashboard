@@ -29,7 +29,10 @@ export function fetchVendorPackageNames(vendor) {
                                 downloads: {
                                     daily: response.package.downloads.daily,
                                     monthly: response.package.downloads.monthly,
-                                    total: response.package.downloads.total,
+                                    total: response.package.downloads.total
+                                },
+                                lastRelease: {
+                                    version: Object.keys(response.package.versions)[0]
                                 },
                                 stars: response.package.github_stars
                             })

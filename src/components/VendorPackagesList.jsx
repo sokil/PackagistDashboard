@@ -9,6 +9,7 @@ class VendorPackagesList extends React.Component {
                 <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].downloads.monthly : 0}</td>
                 <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].downloads.total : 0}</td>
                 <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].stars : 0}</td>
+                <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].lastRelease.version : ''}</td>
             </tr>;
         });
 
@@ -20,6 +21,7 @@ class VendorPackagesList extends React.Component {
                     <th>Monthly Downloads</th>
                     <th>Total Downloads</th>
                     <th>Stars</th>
+                    <th>Last release</th>
                 </tr>
             </thead>
             <tbody>
