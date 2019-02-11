@@ -27,6 +27,16 @@ class VendorPackagesList extends React.Component {
             <tbody>
                 {packageElements}
             </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td>{this.props.totalDownloadStat ? this.props.totalDownloadStat.daily : 0}</td>
+                    <td>{this.props.totalDownloadStat ? this.props.totalDownloadStat.monthly : 0}</td>
+                    <td>{this.props.totalDownloadStat ? this.props.totalDownloadStat.total : 0}</td>
+                    <td>{this.props.totalStars ? this.props.totalStars : 0}</td>
+                    <td></td>
+                </tr>
+            </tfoot>
         </table>
     }
 }

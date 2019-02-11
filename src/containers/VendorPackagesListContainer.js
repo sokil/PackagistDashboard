@@ -12,16 +12,23 @@ const mapStateToProps = state => {
     }
 
     const vendorPackageNames = state.vendorPackageNames[state.currentVendor];
+
     const vendorPackageInfo = pick(
         state.vendorPackageInfo,
         state.vendorPackageNames[state.currentVendor]
     );
 
+    const totalDownloadStat = state.totalDownloadStat;
+
+    const totalStars = state.totalStars;
+
     // @todo: order "vendorPackageNames" by some direction using data from "vendorPackageInfo"
 
     return {
         vendorPackageNames,
-        vendorPackageInfo
+        vendorPackageInfo,
+        totalDownloadStat,
+        totalStars
     }
 };
 

@@ -12,6 +12,12 @@ const initialState = {
     currentVendor: null,
     vendorPackageNames: {},
     vendorPackageInfo: {},
+    totalDownloadStat: {
+        'daily': 0,
+        'monthly': 0,
+        'total': 0,
+    },
+    totalStars: 0
 };
 
 const reducer = function(state, action) {
@@ -34,7 +40,7 @@ const reducer = function(state, action) {
                 }
             };
         case 'addVendorPackageDownloadStat':
-            return {
+            const newState = {
                 ...state,
                 vendorPackageInfo: {
                     ...state.vendorPackageInfo,
@@ -49,8 +55,16 @@ const reducer = function(state, action) {
                         },
                         'stars': action.stars
                     }
-                }
+                },
+                totalDownloadStat: {
+                    'daily': state.totalDownloadStat.daily + action.downloads.daily,
+                    'monthly': state.totalDownloadStat.monthly + action.downloads.monthly,
+                    'total': state.totalDownloadStat.total + action.downloads.total,
+                },
+                totalStars: state.totalStars + action.stars
             };
+
+            return newState;
     }
 
     return state;

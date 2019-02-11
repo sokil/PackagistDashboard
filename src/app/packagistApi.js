@@ -1,3 +1,4 @@
+
 export function fetchVendorPackageNames(vendor) {
     return function(dispatch, getState) {
 
@@ -23,6 +24,14 @@ export function fetchVendorPackageNames(vendor) {
                     fetch("https://packagist.org/packages/" + packageName + ".json")
                         .then(response => response.json())
                         .then(response => {
+                            const versions = response.package.versions;
+
+                            const versionNumbers = Object
+                                .keys(versions)
+                                .filter(versionNumber => !/^dev-/.test(versionNumber));
+
+                            const lastVersionNumber = versionNumbers[0];
+
                             dispatch({
                                 type: 'addVendorPackageDownloadStat',
                                 vendorPackageName: packageName,
@@ -32,7 +41,7 @@ export function fetchVendorPackageNames(vendor) {
                                     total: response.package.downloads.total
                                 },
                                 lastRelease: {
-                                    version: Object.keys(response.package.versions)[0]
+                                    version: lastVersionNumber
                                 },
                                 stars: response.package.github_stars
                             })
