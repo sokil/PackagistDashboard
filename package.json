@@ -1,0 +1,41 @@
+{
+  "name": "PackagistDashboard",
+  "version": "1.0.0",
+  "description": "Took to get info about vendor packages",
+  "main": "./src/js/entrypoint.js",
+  "repository": "git@github.com:sokil/PackagistDashboard.git",
+  "author": "Dmytro Sokil <dmytro.sokil@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "lodash-es": "^4.17.14",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.3.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.11"
+  },
+  "scripts": {
+    "watch": "NODE_ENV=development ./node_modules/.bin/webpack --w",
+    "build-dev": "NODE_ENV=development ./node_modules/.bin/webpack",
+    "dev-serve": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8050 --host 127.0.0.1 --config webpack.config.js",
+    "build-prod": "NODE_ENV=production ./node_modules/.bin/webpack -p --progress"
+  }
+}
