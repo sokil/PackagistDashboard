@@ -4,7 +4,7 @@ class VendorPackagesList extends React.Component {
     render() {
         const packageElements = this.props.vendorPackageNames.map(vendorPackageName => {
             return <tr key={vendorPackageName}>
-                <td><a href={"https://repo.packagist.org/packages/" + vendorPackageName}>{vendorPackageName}</a></td>
+                <td><a href={"https://packagist.org/packages/" + vendorPackageName}>{vendorPackageName}</a></td>
                 <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].downloads.daily : 0}</td>
                 <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].downloads.monthly : 0}</td>
                 <td>{this.props.vendorPackageInfo[vendorPackageName] ? this.props.vendorPackageInfo[vendorPackageName].downloads.total : 0}</td>
